@@ -1,0 +1,550 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		144727841A9FB6F30076FD6A /* ezRegisterWomenOrMenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 144727831A9FB6F30076FD6A /* ezRegisterWomenOrMenViewController.m */; };
+		144727871A9FDACF0076FD6A /* ezRegisterSelectMinMaxAgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 144727861A9FDACF0076FD6A /* ezRegisterSelectMinMaxAgeViewController.m */; };
+		144727981A9FFCC80076FD6A /* Animator.m in Sources */ = {isa = PBXBuildFile; fileRef = 144727931A9FFCC80076FD6A /* Animator.m */; };
+		144727991A9FFCC80076FD6A /* AnimatorBack.m in Sources */ = {isa = PBXBuildFile; fileRef = 144727951A9FFCC80076FD6A /* AnimatorBack.m */; };
+		1447279A1A9FFCC80076FD6A /* NavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 144727971A9FFCC80076FD6A /* NavigationControllerDelegate.m */; };
+		1447279D1AA0023B0076FD6A /* ezOnlineNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1447279C1AA0023B0076FD6A /* ezOnlineNavigationController.m */; };
+		14661C951A9BE97000C90853 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14661C941A9BE97000C90853 /* main.m */; };
+		14661C981A9BE97000C90853 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14661C971A9BE97000C90853 /* AppDelegate.m */; };
+		14661CA01A9BE97000C90853 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14661C9F1A9BE97000C90853 /* Images.xcassets */; };
+		14661CAF1A9BE97000C90853 /* ezFriendsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14661CAE1A9BE97000C90853 /* ezFriendsTests.m */; };
+		14661CBA1A9BEB3A00C90853 /* ezButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14661CB91A9BEB3A00C90853 /* ezButtonViewController.m */; };
+		14661CBC1A9BF29700C90853 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14661CBB1A9BF29700C90853 /* CoreMedia.framework */; };
+		14661CBE1A9BF2A300C90853 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14661CBD1A9BF2A300C90853 /* CoreVideo.framework */; };
+		14661CC01A9BF2AC00C90853 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14661CBF1A9BF2AC00C90853 /* AVFoundation.framework */; };
+		14661CC21A9BF2B600C90853 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14661CC11A9BF2B600C90853 /* ImageIO.framework */; };
+		1494CFA41A9DF7FF000ABE0D /* ezMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1494CFA31A9DF7FF000ABE0D /* ezMenuViewController.m */; };
+		1494CFA61A9E4A01000ABE0D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1494CFA51A9E4A01000ABE0D /* CoreLocation.framework */; };
+		1494CFA91A9F86B3000ABE0D /* ezLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1494CFA81A9F86B3000ABE0D /* ezLoginViewController.m */; };
+		4BAC22AF15B578645F240CD3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FEF47C5B9970A56EB70D238 /* libPods.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		14661CA91A9BE97000C90853 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14661C871A9BE97000C90853 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14661C8E1A9BE97000C90853;
+			remoteInfo = ezFriends;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		144727821A9FB6F30076FD6A /* ezRegisterWomenOrMenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ezRegisterWomenOrMenViewController.h; sourceTree = "<group>"; };
+		144727831A9FB6F30076FD6A /* ezRegisterWomenOrMenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ezRegisterWomenOrMenViewController.m; sourceTree = "<group>"; };
+		144727851A9FDACF0076FD6A /* ezRegisterSelectMinMaxAgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ezRegisterSelectMinMaxAgeViewController.h; sourceTree = "<group>"; };
+		144727861A9FDACF0076FD6A /* ezRegisterSelectMinMaxAgeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ezRegisterSelectMinMaxAgeViewController.m; sourceTree = "<group>"; };
+		144727921A9FFCC80076FD6A /* Animator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animator.h; sourceTree = "<group>"; };
+		144727931A9FFCC80076FD6A /* Animator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animator.m; sourceTree = "<group>"; };
+		144727941A9FFCC80076FD6A /* AnimatorBack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatorBack.h; sourceTree = "<group>"; };
+		144727951A9FFCC80076FD6A /* AnimatorBack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatorBack.m; sourceTree = "<group>"; };
+		144727961A9FFCC80076FD6A /* NavigationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationControllerDelegate.h; sourceTree = "<group>"; };
+		144727971A9FFCC80076FD6A /* NavigationControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationControllerDelegate.m; sourceTree = "<group>"; };
+		1447279B1AA0023B0076FD6A /* ezOnlineNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ezOnlineNavigationController.h; sourceTree = "<group>"; };
+		1447279C1AA0023B0076FD6A /* ezOnlineNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ezOnlineNavigationController.m; sourceTree = "<group>"; };
+		14661C8F1A9BE97000C90853 /* ezFriends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ezFriends.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		14661C931A9BE97000C90853 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14661C941A9BE97000C90853 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		14661C961A9BE97000C90853 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		14661C971A9BE97000C90853 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		14661C9F1A9BE97000C90853 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		14661CA81A9BE97000C90853 /* ezFriendsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ezFriendsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		14661CAD1A9BE97000C90853 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14661CAE1A9BE97000C90853 /* ezFriendsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ezFriendsTests.m; sourceTree = "<group>"; };
+		14661CB81A9BEB3A00C90853 /* ezButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ezButtonViewController.h; sourceTree = "<group>"; };
+		14661CB91A9BEB3A00C90853 /* ezButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ezButtonViewController.m; sourceTree = "<group>"; };
+		14661CBB1A9BF29700C90853 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		14661CBD1A9BF2A300C90853 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		14661CBF1A9BF2AC00C90853 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		14661CC11A9BF2B600C90853 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		1494CFA21A9DF7FF000ABE0D /* ezMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ezMenuViewController.h; sourceTree = "<group>"; };
+		1494CFA31A9DF7FF000ABE0D /* ezMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ezMenuViewController.m; sourceTree = "<group>"; };
+		1494CFA51A9E4A01000ABE0D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1494CFA71A9F86B3000ABE0D /* ezLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ezLoginViewController.h; sourceTree = "<group>"; };
+		1494CFA81A9F86B3000ABE0D /* ezLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ezLoginViewController.m; sourceTree = "<group>"; };
+		168EE9A0F5D67AE41D9C5550 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		48087B1192F2204687C762D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		9FEF47C5B9970A56EB70D238 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		14661C8C1A9BE97000C90853 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1494CFA61A9E4A01000ABE0D /* CoreLocation.framework in Frameworks */,
+				14661CC21A9BF2B600C90853 /* ImageIO.framework in Frameworks */,
+				14661CC01A9BF2AC00C90853 /* AVFoundation.framework in Frameworks */,
+				14661CBE1A9BF2A300C90853 /* CoreVideo.framework in Frameworks */,
+				14661CBC1A9BF29700C90853 /* CoreMedia.framework in Frameworks */,
+				4BAC22AF15B578645F240CD3 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14661CA51A9BE97000C90853 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		144727911A9FFC640076FD6A /* ezNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				144727921A9FFCC80076FD6A /* Animator.h */,
+				144727931A9FFCC80076FD6A /* Animator.m */,
+				144727941A9FFCC80076FD6A /* AnimatorBack.h */,
+				144727951A9FFCC80076FD6A /* AnimatorBack.m */,
+				144727961A9FFCC80076FD6A /* NavigationControllerDelegate.h */,
+				144727971A9FFCC80076FD6A /* NavigationControllerDelegate.m */,
+			);
+			name = ezNavigationController;
+			sourceTree = "<group>";
+		};
+		14661C861A9BE97000C90853 = {
+			isa = PBXGroup;
+			children = (
+				14661C911A9BE97000C90853 /* ezFriends */,
+				14661CAB1A9BE97000C90853 /* ezFriendsTests */,
+				14661C901A9BE97000C90853 /* Products */,
+				2846AF9DA0A4CC0303B57856 /* Pods */,
+				1FB99273E3D0768F33338F4E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		14661C901A9BE97000C90853 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				14661C8F1A9BE97000C90853 /* ezFriends.app */,
+				14661CA81A9BE97000C90853 /* ezFriendsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		14661C911A9BE97000C90853 /* ezFriends */ = {
+			isa = PBXGroup;
+			children = (
+				14661C9F1A9BE97000C90853 /* Images.xcassets */,
+				14661C961A9BE97000C90853 /* AppDelegate.h */,
+				14661C971A9BE97000C90853 /* AppDelegate.m */,
+				1494CFA71A9F86B3000ABE0D /* ezLoginViewController.h */,
+				1494CFA81A9F86B3000ABE0D /* ezLoginViewController.m */,
+				14661CB81A9BEB3A00C90853 /* ezButtonViewController.h */,
+				14661CB91A9BEB3A00C90853 /* ezButtonViewController.m */,
+				1494CFA21A9DF7FF000ABE0D /* ezMenuViewController.h */,
+				1494CFA31A9DF7FF000ABE0D /* ezMenuViewController.m */,
+				14661C921A9BE97000C90853 /* Supporting Files */,
+				144727851A9FDACF0076FD6A /* ezRegisterSelectMinMaxAgeViewController.h */,
+				144727861A9FDACF0076FD6A /* ezRegisterSelectMinMaxAgeViewController.m */,
+				144727821A9FB6F30076FD6A /* ezRegisterWomenOrMenViewController.h */,
+				144727831A9FB6F30076FD6A /* ezRegisterWomenOrMenViewController.m */,
+				144727911A9FFC640076FD6A /* ezNavigationController */,
+				1447279B1AA0023B0076FD6A /* ezOnlineNavigationController.h */,
+				1447279C1AA0023B0076FD6A /* ezOnlineNavigationController.m */,
+			);
+			path = ezFriends;
+			sourceTree = "<group>";
+		};
+		14661C921A9BE97000C90853 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				14661C931A9BE97000C90853 /* Info.plist */,
+				14661C941A9BE97000C90853 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		14661CAB1A9BE97000C90853 /* ezFriendsTests */ = {
+			isa = PBXGroup;
+			children = (
+				14661CAE1A9BE97000C90853 /* ezFriendsTests.m */,
+				14661CAC1A9BE97000C90853 /* Supporting Files */,
+			);
+			path = ezFriendsTests;
+			sourceTree = "<group>";
+		};
+		14661CAC1A9BE97000C90853 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				14661CAD1A9BE97000C90853 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1FB99273E3D0768F33338F4E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1494CFA51A9E4A01000ABE0D /* CoreLocation.framework */,
+				14661CC11A9BF2B600C90853 /* ImageIO.framework */,
+				14661CBF1A9BF2AC00C90853 /* AVFoundation.framework */,
+				14661CBD1A9BF2A300C90853 /* CoreVideo.framework */,
+				14661CBB1A9BF29700C90853 /* CoreMedia.framework */,
+				9FEF47C5B9970A56EB70D238 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2846AF9DA0A4CC0303B57856 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				48087B1192F2204687C762D3 /* Pods.debug.xcconfig */,
+				168EE9A0F5D67AE41D9C5550 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		14661C8E1A9BE97000C90853 /* ezFriends */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14661CB21A9BE97000C90853 /* Build configuration list for PBXNativeTarget "ezFriends" */;
+			buildPhases = (
+				A2311BCCCCA90F644E9D9974 /* Check Pods Manifest.lock */,
+				14661C8B1A9BE97000C90853 /* Sources */,
+				14661C8C1A9BE97000C90853 /* Frameworks */,
+				14661C8D1A9BE97000C90853 /* Resources */,
+				95AAAD9A624E10C699F1A239 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ezFriends;
+			productName = ezFriends;
+			productReference = 14661C8F1A9BE97000C90853 /* ezFriends.app */;
+			productType = "com.apple.product-type.application";
+		};
+		14661CA71A9BE97000C90853 /* ezFriendsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14661CB51A9BE97000C90853 /* Build configuration list for PBXNativeTarget "ezFriendsTests" */;
+			buildPhases = (
+				14661CA41A9BE97000C90853 /* Sources */,
+				14661CA51A9BE97000C90853 /* Frameworks */,
+				14661CA61A9BE97000C90853 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				14661CAA1A9BE97000C90853 /* PBXTargetDependency */,
+			);
+			name = ezFriendsTests;
+			productName = ezFriendsTests;
+			productReference = 14661CA81A9BE97000C90853 /* ezFriendsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		14661C871A9BE97000C90853 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Maciej Matuszewski";
+				TargetAttributes = {
+					14661C8E1A9BE97000C90853 = {
+						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = TLA9984P8M;
+					};
+					14661CA71A9BE97000C90853 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 14661C8E1A9BE97000C90853;
+					};
+				};
+			};
+			buildConfigurationList = 14661C8A1A9BE97000C90853 /* Build configuration list for PBXProject "ezFriends" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 14661C861A9BE97000C90853;
+			productRefGroup = 14661C901A9BE97000C90853 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				14661C8E1A9BE97000C90853 /* ezFriends */,
+				14661CA71A9BE97000C90853 /* ezFriendsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		14661C8D1A9BE97000C90853 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14661CA01A9BE97000C90853 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14661CA61A9BE97000C90853 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		95AAAD9A624E10C699F1A239 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A2311BCCCCA90F644E9D9974 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		14661C8B1A9BE97000C90853 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				144727981A9FFCC80076FD6A /* Animator.m in Sources */,
+				1494CFA41A9DF7FF000ABE0D /* ezMenuViewController.m in Sources */,
+				1447279A1A9FFCC80076FD6A /* NavigationControllerDelegate.m in Sources */,
+				144727841A9FB6F30076FD6A /* ezRegisterWomenOrMenViewController.m in Sources */,
+				144727991A9FFCC80076FD6A /* AnimatorBack.m in Sources */,
+				1447279D1AA0023B0076FD6A /* ezOnlineNavigationController.m in Sources */,
+				14661CBA1A9BEB3A00C90853 /* ezButtonViewController.m in Sources */,
+				144727871A9FDACF0076FD6A /* ezRegisterSelectMinMaxAgeViewController.m in Sources */,
+				14661C981A9BE97000C90853 /* AppDelegate.m in Sources */,
+				14661C951A9BE97000C90853 /* main.m in Sources */,
+				1494CFA91A9F86B3000ABE0D /* ezLoginViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14661CA41A9BE97000C90853 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14661CAF1A9BE97000C90853 /* ezFriendsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		14661CAA1A9BE97000C90853 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14661C8E1A9BE97000C90853 /* ezFriends */;
+			targetProxy = 14661CA91A9BE97000C90853 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		14661CB01A9BE97000C90853 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		14661CB11A9BE97000C90853 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		14661CB31A9BE97000C90853 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48087B1192F2204687C762D3 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = ezFriends/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		14661CB41A9BE97000C90853 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 168EE9A0F5D67AE41D9C5550 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = ezFriends/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+		14661CB61A9BE97000C90853 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ezFriendsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ezFriends.app/ezFriends";
+			};
+			name = Debug;
+		};
+		14661CB71A9BE97000C90853 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ezFriendsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ezFriends.app/ezFriends";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		14661C8A1A9BE97000C90853 /* Build configuration list for PBXProject "ezFriends" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14661CB01A9BE97000C90853 /* Debug */,
+				14661CB11A9BE97000C90853 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		14661CB21A9BE97000C90853 /* Build configuration list for PBXNativeTarget "ezFriends" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14661CB31A9BE97000C90853 /* Debug */,
+				14661CB41A9BE97000C90853 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		14661CB51A9BE97000C90853 /* Build configuration list for PBXNativeTarget "ezFriendsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14661CB61A9BE97000C90853 /* Debug */,
+				14661CB71A9BE97000C90853 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 14661C871A9BE97000C90853 /* Project object */;
+}

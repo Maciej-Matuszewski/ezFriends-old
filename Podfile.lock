@@ -1,0 +1,48 @@
+PODS:
+  - Bolts (1.1.3)
+  - DBPrivacyHelper (0.6.2)
+  - Facebook-iOS-SDK (3.23.0):
+    - Bolts (~> 1.0)
+  - NMRangeSlider (1.2.1)
+  - Parse (1.6.3):
+    - Bolts (~> 1.1)
+  - ParseFacebookUtils (1.6.3):
+    - Facebook-iOS-SDK (~> 3.20)
+    - Parse (~> 1.6.3)
+  - PBJVision (0.4.0)
+  - SDWebImage (3.7.1):
+    - SDWebImage/Core (= 3.7.1)
+  - SDWebImage/Core (3.7.1)
+  - SinchRTC (3.4.2)
+  - SplunkMint-iOS (4.0.24)
+  - SWRevealViewController (2.3.0)
+  - TTTAttributedLabel (1.13.2)
+
+DEPENDENCIES:
+  - DBPrivacyHelper
+  - Facebook-iOS-SDK
+  - NMRangeSlider
+  - Parse
+  - ParseFacebookUtils
+  - PBJVision
+  - SDWebImage
+  - SinchRTC
+  - SplunkMint-iOS
+  - SWRevealViewController
+  - TTTAttributedLabel
+
+SPEC CHECKSUMS:
+  Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
+  DBPrivacyHelper: 2dc0c2153d3177a97fa4e7122da672b34c569219
+  Facebook-iOS-SDK: 3d65f685348b789e46a9aacf92bfa85b60b63755
+  NMRangeSlider: af83627c6da11b39a6147c223f6674b3c57b5b44
+  Parse: f725f76ef200c5127420690fc6882e57c3813923
+  ParseFacebookUtils: bb14e63862f920cc3f3864b0e373d6771b765255
+  PBJVision: f1b256379799784dc26b0cdd39be365e69d188b0
+  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
+  SinchRTC: f8167cb84abe3f114d093e20202a861dc59ca8be
+  SplunkMint-iOS: 528329b25dcadcb919b99e46f4a786d11c51c82c
+  SWRevealViewController: f6d80638b8e12323e87ac79562345403a799cb77
+  TTTAttributedLabel: 7c4592f9a806badb8b48dc634cb9800447c51594
+
+COCOAPODS: 0.35.0
