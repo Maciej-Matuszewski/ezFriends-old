@@ -12,10 +12,12 @@
 
 #import <SWRevealViewController/SWRevealViewController.h>
 #import <Parse/Parse.h>
+#import <ParseCrashReporting/ParseCrashReporting.h>
 #import <Sinch/Sinch.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import <TTTAttributedLabel.h>
 #import <NMRangeSlider/NMRangeSlider.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #import "ezLoginViewController.h"
 #import "ezButtonViewController.h"
@@ -23,6 +25,8 @@
 #import "ezRegisterWomenOrMenViewController.h"
 #import "ezRegisterSelectMinMaxAgeViewController.h"
 #import "ezOnlineNavigationController.h"
+#import "ezUserFeedCollectionViewController.h"
+#import "ezUserFeedProfileCollectionViewCell.h"
 
 #import "NavigationControllerDelegate.h"
 
@@ -44,6 +48,10 @@
 -(void)stopUpdateLocation;
 
 - (void)sendTextMessage:(NSString *)messageText toRecipient:(NSString *)recipientId;
+
+-(void)registerPush;
+
+- (void)initSinchClient:(NSString*)userId;
 
 @end
 

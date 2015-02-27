@@ -27,7 +27,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    
+    [ParseCrashReporting enable];
     [Parse setApplicationId:@"KPVyoSoqflNJcwYQdGKfw7L2BZmEMNURiqNarauQ"
                   clientKey:@"jOeRqjS6irCw8xcMLsdwjtXZcOicMl3odmDCngBv"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
@@ -76,6 +76,7 @@
     return YES;
 }
 
+
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
@@ -98,9 +99,6 @@
                                        environmentHost:@"sandbox.sinch.com"                                                userId:userId];
     
     
-    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    [currentInstallation addUniqueObject:[NSString stringWithFormat:@"u_%@",userId] forKey:@"channels"];
-    [currentInstallation saveInBackground];
     
     self.sinchClient.delegate = self;
     
@@ -119,8 +117,6 @@
     NSLog(@"Start SINClient successful!");
     self.sinchMessageClient = [self.sinchClient messageClient];
     self.sinchMessageClient.delegate =  self;
-    
-    [self sendTextMessage:@"test" toRecipient:@"7UA0KZGJEF"];
 }
 
 - (void)clientDidFail:(id<SINClient>)client error:(NSError *)error {
@@ -131,9 +127,6 @@
 // Receiving an incoming message.
 - (void)messageClient:(id<SINMessageClient>)messageClient didReceiveIncomingMessage:(id<SINMessage>)message {
     [[NSNotificationCenter defaultCenter] postNotificationName:SINCH_MESSAGE_RECIEVED object:self userInfo:@{@"message" : message}];
-    
-    
-    NSLog([message text]);
 }
 
 // Finish sending a message
@@ -190,6 +183,7 @@
     // Store the deviceToken in the current Installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation addUniqueObject:[NSString stringWithFormat:@"u_%@",[[PFUser currentUser] objectId]] forKey:@"channels"];
     [currentInstallation saveInBackground];
     
     

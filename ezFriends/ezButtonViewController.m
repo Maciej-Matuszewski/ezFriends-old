@@ -43,6 +43,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] registerPush];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] initSinchClient:[[PFUser currentUser] objectId]];
+    
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"mainBackground"]]];
     
     
@@ -124,7 +127,12 @@
     [self.buttonView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[item]|" options:0 metrics:nil views:@{@"item":self.buttonView.imageView}]];
     [self.buttonView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[item]|" options:0 metrics:nil views:@{@"item":self.buttonView.imageView}]];
 
+    [self performSelector:@selector(pushToUserFeed) withObject:nil];
     
+}
+
+-(void)pushToUserFeed{
+    [[(AppDelegate *)[[UIApplication sharedApplication] delegate] revealVC] setFrontViewController:[[ezOnlineNavigationController alloc] init]];
 }
 
 
@@ -243,11 +251,21 @@
     UIImage *image = [UIImage imageWithData:[photoDict objectForKey:@"PBJVisionPhotoJPEGKey"]];
     image = [self squareImageWithImage:image scaledToSize:image.size.height>image.size.width?CGSizeMake(image.size.width, image.size.width):CGSizeMake(image.size.height, image.size.height)];
     
-    NSData* data = UIImageJPEGRepresentation(image, 0.5f);
+    NSData* data = UIImageJPEGRepresentation(image, 0.2f);
+    
+    if ([PFUser currentUser][@"photo"]) {
+        PFObject *photo = [PFObject objectWithClassName:@"Photos"];
+        photo[@"user"] = [PFUser currentUser];
+        photo[@"photo"] = [PFUser currentUser][@"photo"];
+        [photo saveInBackground];
+    }
+    
     PFFile *imageFile = [PFFile fileWithName:@"Image.jpg" data:data];
     
     [[PFUser currentUser]setObject:imageFile forKey:@"photo"];
     [[PFUser currentUser] saveInBackground];
+    
+    
     
     [[(AppDelegate *)[[UIApplication sharedApplication] delegate] revealVC] setFrontViewController:[[ezOnlineNavigationController alloc] init]];
 }

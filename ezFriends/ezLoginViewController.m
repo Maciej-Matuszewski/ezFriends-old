@@ -121,7 +121,7 @@
                         NSDateFormatter* myFormatter = [[NSDateFormatter alloc] init];
                         [myFormatter setDateFormat:@"MM/dd/yyyy"];
                         
-                        [[PFUser currentUser] setObject:[NSNumber numberWithInt:[[[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[myFormatter dateFromString:[userFB objectForKey:@"birthday"]]] year]] forKey:@"birthday"];
+                        [[PFUser currentUser] setObject:[NSNumber numberWithInt:(int)[[[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[myFormatter dateFromString:[userFB objectForKey:@"birthday"]]] year]] forKey:@"birthday"];
                         [[PFUser currentUser] saveInBackground];
                     }
                 }];

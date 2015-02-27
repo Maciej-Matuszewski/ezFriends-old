@@ -25,6 +25,8 @@
 		1494CFA41A9DF7FF000ABE0D /* ezMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1494CFA31A9DF7FF000ABE0D /* ezMenuViewController.m */; };
 		1494CFA61A9E4A01000ABE0D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1494CFA51A9E4A01000ABE0D /* CoreLocation.framework */; };
 		1494CFA91A9F86B3000ABE0D /* ezLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1494CFA81A9F86B3000ABE0D /* ezLoginViewController.m */; };
+		14A0EC4B1AA0865E0040756B /* ezUserFeedCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A0EC4A1AA0865E0040756B /* ezUserFeedCollectionViewController.m */; };
+		14A0EC4E1AA08F660040756B /* ezUserFeedProfileCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A0EC4D1AA08F660040756B /* ezUserFeedProfileCollectionViewCell.m */; };
 		4BAC22AF15B578645F240CD3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FEF47C5B9970A56EB70D238 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +73,10 @@
 		1494CFA51A9E4A01000ABE0D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1494CFA71A9F86B3000ABE0D /* ezLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ezLoginViewController.h; sourceTree = "<group>"; };
 		1494CFA81A9F86B3000ABE0D /* ezLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ezLoginViewController.m; sourceTree = "<group>"; };
+		14A0EC491AA0865E0040756B /* ezUserFeedCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ezUserFeedCollectionViewController.h; sourceTree = "<group>"; };
+		14A0EC4A1AA0865E0040756B /* ezUserFeedCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ezUserFeedCollectionViewController.m; sourceTree = "<group>"; };
+		14A0EC4C1AA08F660040756B /* ezUserFeedProfileCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ezUserFeedProfileCollectionViewCell.h; sourceTree = "<group>"; };
+		14A0EC4D1AA08F660040756B /* ezUserFeedProfileCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ezUserFeedProfileCollectionViewCell.m; sourceTree = "<group>"; };
 		168EE9A0F5D67AE41D9C5550 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		48087B1192F2204687C762D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9FEF47C5B9970A56EB70D238 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +159,10 @@
 				144727911A9FFC640076FD6A /* ezNavigationController */,
 				1447279B1AA0023B0076FD6A /* ezOnlineNavigationController.h */,
 				1447279C1AA0023B0076FD6A /* ezOnlineNavigationController.m */,
+				14A0EC491AA0865E0040756B /* ezUserFeedCollectionViewController.h */,
+				14A0EC4A1AA0865E0040756B /* ezUserFeedCollectionViewController.m */,
+				14A0EC4C1AA08F660040756B /* ezUserFeedProfileCollectionViewCell.h */,
+				14A0EC4D1AA08F660040756B /* ezUserFeedProfileCollectionViewCell.m */,
 			);
 			path = ezFriends;
 			sourceTree = "<group>";
@@ -343,10 +353,12 @@
 				1494CFA41A9DF7FF000ABE0D /* ezMenuViewController.m in Sources */,
 				1447279A1A9FFCC80076FD6A /* NavigationControllerDelegate.m in Sources */,
 				144727841A9FB6F30076FD6A /* ezRegisterWomenOrMenViewController.m in Sources */,
+				14A0EC4E1AA08F660040756B /* ezUserFeedProfileCollectionViewCell.m in Sources */,
 				144727991A9FFCC80076FD6A /* AnimatorBack.m in Sources */,
 				1447279D1AA0023B0076FD6A /* ezOnlineNavigationController.m in Sources */,
 				14661CBA1A9BEB3A00C90853 /* ezButtonViewController.m in Sources */,
 				144727871A9FDACF0076FD6A /* ezRegisterSelectMinMaxAgeViewController.m in Sources */,
+				14A0EC4B1AA0865E0040756B /* ezUserFeedCollectionViewController.m in Sources */,
 				14661C981A9BE97000C90853 /* AppDelegate.m in Sources */,
 				14661C951A9BE97000C90853 /* main.m in Sources */,
 				1494CFA91A9F86B3000ABE0D /* ezLoginViewController.m in Sources */,

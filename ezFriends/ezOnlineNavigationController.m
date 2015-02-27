@@ -19,14 +19,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setViewControllers:@[[[UIViewController alloc] init]]];
     
     self.navconDelegate = [[NavigationControllerDelegate alloc] init];
     self.navigationBar.barTintColor = [(AppDelegate *)[[UIApplication sharedApplication] delegate] ezColor];
     self.navigationBar.translucent = NO;
-    self.navigationBarHidden = YES;
+    self.navigationBarHidden = NO;
     [self setDelegate:self.navconDelegate];
     [self.navconDelegate awakeFromNib];
+    
+    UICollectionViewFlowLayout *aFlowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [aFlowLayout setItemSize:CGSizeMake([[UIScreen mainScreen] applicationFrame].size.width, [[UIScreen mainScreen] applicationFrame].size.height-self.navigationBar.frame.size.height)];
+    [aFlowLayout setMinimumInteritemSpacing:0];
+    [aFlowLayout setMinimumLineSpacing:0];
+    [aFlowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    [self setViewControllers:@[[[ezUserFeedCollectionViewController alloc]initWithCollectionViewLayout:aFlowLayout]]];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
