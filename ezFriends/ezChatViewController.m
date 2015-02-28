@@ -99,17 +99,21 @@
     
     NSDictionary *message = [self.messages objectAtIndex:indexPath.row];
     JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
-    
-    if ([message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]) {
-        [cell.textView setTextColor:[UIColor darkGrayColor]];
-    }else{
-        [cell.textView setTextColor:[(AppDelegate *)[[UIApplication sharedApplication] delegate] ezColor]];
+    if (![message[@"text"] containsString:@":s:"]) {
+        
+        if ([message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]) {
+            [cell.textView setTextColor:[UIColor darkGrayColor]];
+        }else{
+            [cell.textView setTextColor:[(AppDelegate *)[[UIApplication sharedApplication] delegate] ezColor]];
+        }
+        
+        cell.textView.linkTextAttributes = @{ NSForegroundColorAttributeName : cell.textView.textColor,
+                                              NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid) };
+        
     }
     
     [cell setAlpha:(float)(1440-[[[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] components:NSMinuteCalendarUnit fromDate:message[@"date"] toDate:[NSDate date] options:0] minute])/1440];
     
-    cell.textView.linkTextAttributes = @{ NSForegroundColorAttributeName : cell.textView.textColor,
-                                          NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid) };
     return cell;
     
 }
@@ -126,7 +130,9 @@
 - (id<JSQMessageData>)collectionView:(JSQMessagesCollectionView *)collectionView messageDataForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *message = [self.messages objectAtIndex:indexPath.row];
-    
+    if ([message[@"text"] containsString:@":s:"]) {
+        return [[JSQMessage alloc] initWithSenderId:message[@"senderID"] senderDisplayName:[message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]?[PFUser currentUser][@"name"]:self.user[@"name"] date:message[@"date"] media:[[JSQPhotoMediaItem alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_%@",[message[@"text"] stringByReplacingOccurrencesOfString:@":s:" withString:@""],[message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]?@"b":@"a"]]]];
+    }
     return [[JSQMessage alloc] initWithSenderId:message[@"senderID"] senderDisplayName:[message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]?[PFUser currentUser][@"name"]:self.user[@"name"] date:message[@"date"] text:message[@"text"]];
 }
 
@@ -180,6 +186,7 @@
 }
 
 -(void)didPressAccessoryButton:(UIButton *)sender{
+    [self.view endEditing:YES];
     [self.popover presentPopoverFromView:sender];
 }
 
