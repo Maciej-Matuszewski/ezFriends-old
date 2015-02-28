@@ -32,6 +32,11 @@
 #import "NavigationControllerDelegate.h"
 
 
+#define SINCH_MESSAGE_RECIEVED @"SINCH_MESSAGE_RECIEVED"
+#define SINCH_MESSAGE_SENT @"SINCH_MESSAGE_SENT"
+#define SINCH_MESSAGE_DELIVERED @"SINCH_MESSAGE_DELIVERED"
+#define SINCH_MESSAGE_FAILED @"SINCH_MESSAGE_DELIVERED"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate,SWRevealViewControllerDelegate, SINClientDelegate, SINMessageClientDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -44,6 +49,8 @@
 
 @property (nonatomic, retain) CLLocationManager *locationManager;
 
+@property (nonatomic, retain) NSMutableDictionary *messagesDatabase;
+
 -(void)startUpdateLocation;
 
 -(void)stopUpdateLocation;
@@ -53,6 +60,14 @@
 -(void)registerPush;
 
 - (void)initSinchClient:(NSString*)userId;
+
+-(void)loadMessages;
+
+-(NSArray *)reciveMessagesForUser:(NSString *)userID;
+
+-(void)saveNewMessagesWithUser:(NSString *)userID withText:(NSString *)text withDate:(NSDate *)date incoming:(BOOL)incoming;
+
+- (int)hoursBetween:(NSDate *)firstDate and:(NSDate *)secondDate;
 
 @end
 

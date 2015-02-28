@@ -45,6 +45,7 @@
     
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] registerPush];
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] initSinchClient:[[PFUser currentUser] objectId]];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] loadMessages];
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"mainBackground"]]];
     
@@ -127,7 +128,7 @@
     [self.buttonView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[item]|" options:0 metrics:nil views:@{@"item":self.buttonView.imageView}]];
     [self.buttonView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[item]|" options:0 metrics:nil views:@{@"item":self.buttonView.imageView}]];
 
-    //[self performSelector:@selector(pushToUserFeed) withObject:nil];
+    [self performSelector:@selector(pushToUserFeed) withObject:nil];
     
 }
 

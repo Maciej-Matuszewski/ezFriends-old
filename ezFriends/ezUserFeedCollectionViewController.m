@@ -11,6 +11,8 @@
 
 @interface ezUserFeedCollectionViewController ()
 
+@property (nonatomic, retain) NSArray *users;
+
 @end
 
 @implementation ezUserFeedCollectionViewController
@@ -19,7 +21,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self setUsers:[[NSArray alloc] init]];
     [self.view setBackgroundColor:[(AppDelegate *)[[UIApplication sharedApplication] delegate] ezColor]];
     [self.collectionView setBackgroundColor:[(AppDelegate *)[[UIApplication sharedApplication] delegate] ezColor]];
     [self.collectionView setPagingEnabled:YES];
@@ -29,7 +31,14 @@ static NSString * const reuseIdentifier = @"Cell";
     // Register cell classes
     [self.collectionView registerClass:[ezUserFeedProfileCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    // Do any additional setup after loading the view.
+    PFQuery *query = [PFUser query];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if(!error){
+            self.users = objects;
+            [self.collectionView reloadData];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,13 +64,13 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 5;
+    return self.users.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ezUserFeedProfileCollectionViewCell *cell = (ezUserFeedProfileCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    __block ezUserFeedProfileCollectionViewCell *cell = (ezUserFeedProfileCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    cell = [cell initWithUser:[PFUser currentUser]];
+    cell = [cell initWithUser:[self.users objectAtIndex:indexPath.row]];
     
     [cell.chatButton addTarget:self action:@selector(chatButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     

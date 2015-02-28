@@ -8,10 +8,6 @@
 
 #import "AppDelegate.h"
 
-#define SINCH_MESSAGE_RECIEVED @"SINCH_MESSAGE_RECIEVED"
-#define SINCH_MESSAGE_SENT @"SINCH_MESSAGE_SENT"
-#define SINCH_MESSAGE_DELIVERED @"SINCH_MESSAGE_DELIVERED"
-#define SINCH_MESSAGE_FAILED @"SINCH_MESSAGE_DELIVERED"
 
 @interface AppDelegate ()
 
@@ -95,7 +91,8 @@
 - (void)initSinchClient:(NSString*)userId {
     self.sinchClient = [Sinch clientWithApplicationKey:@"afcb4ea9-6a44-4f91-b764-821460493ff0"
                                      applicationSecret:@"/ES1zu3zRU64Zj9bpiUQaQ=="
-                                       environmentHost:@"sandbox.sinch.com"                                                userId:userId];
+                                       environmentHost:@"sandbox.sinch.com"
+                                                userId:userId];
     
     
     
@@ -125,6 +122,9 @@
 #pragma mark SINMessageClientDelegate methods
 // Receiving an incoming message.
 - (void)messageClient:(id<SINMessageClient>)messageClient didReceiveIncomingMessage:(id<SINMessage>)message {
+    
+    [self saveNewMessagesWithUser:[message senderId] withText:[message text] withDate:[message timestamp] incoming:YES];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:SINCH_MESSAGE_RECIEVED object:self userInfo:@{@"message" : message}];
 }
 
@@ -151,6 +151,7 @@
 - (void)sendTextMessage:(NSString *)messageText toRecipient:(NSString *)recipientId {
     SINOutgoingMessage *outgoingMessage = [SINOutgoingMessage messageWithRecipient:recipientId text:messageText];
     [self.sinchClient.messageClient sendMessage:outgoingMessage];
+    [self saveNewMessagesWithUser:recipientId withText:messageText  withDate:[NSDate date] incoming:NO];
 }
 
 -(void)message:(id<SINMessage>)message shouldSendPushNotifications:(NSArray *)pushPairs{
@@ -263,6 +264,51 @@
     }
 }
 
+#pragma mark - messages database
+
+-(void)loadMessages{
+    
+    NSString *filePath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist",[[PFUser currentUser] objectId]]];
+    
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        [self setMessagesDatabase:[NSMutableDictionary dictionaryWithContentsOfFile:filePath]];
+    }else{
+        [self setMessagesDatabase:[[NSMutableDictionary alloc] init]];
+    }
+}
+
+-(NSArray *)reciveMessagesForUser:(NSString *)userID{
+    NSArray *messages;
+    if ([self.messagesDatabase objectForKey:userID])messages = [self.messagesDatabase objectForKey:userID];
+    else messages  = [[NSArray alloc] init];
+    return messages;
+}
+
+-(void)saveNewMessagesWithUser:(NSString *)userID withText:(NSString *)text withDate:(NSDate *)date incoming:(BOOL)incoming{
+    
+    NSString *filePath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist",[[PFUser currentUser] objectId]]];
+    NSArray *messages;
+    if ([self.messagesDatabase objectForKey:userID])messages = [self.messagesDatabase objectForKey:userID];
+    else messages  = [[NSMutableArray alloc] init];
+    
+    NSDictionary *message = [[NSDictionary alloc] initWithObjects:@[incoming?userID:[[PFUser currentUser] objectId], text, date] forKeys:@[@"senderID", @"text", @"date"]];
+    messages = [messages arrayByAddingObject:message];
+    
+    [self.messagesDatabase setObject:messages forKey:userID];
+    [self.messagesDatabase writeToFile:filePath atomically:NO];
+
+}
+
+#pragma mark - dateAction
+- (int)hoursBetween:(NSDate *)firstDate and:(NSDate *)secondDate {
+    NSUInteger unitFlags = NSHourCalendarUnit;
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [calendar components:unitFlags fromDate:firstDate toDate:secondDate options:0];
+    return [components hour]+1;
+}
+
+#pragma mark - applicationEvents
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
