@@ -63,7 +63,16 @@ static NSString * const reuseIdentifier = @"Cell";
     
     cell = [cell initWithUser:[PFUser currentUser]];
     
+    [cell.chatButton addTarget:self action:@selector(chatButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    
     return cell;
+}
+
+-(void)chatButtonAction:(UIButton *)sender{
+    ezUserFeedProfileCollectionViewCell *cell = (ezUserFeedProfileCollectionViewCell *)[sender superview];
+    ezChatViewController *chatView = [[ezChatViewController alloc] init];
+    [chatView setUser:cell.pfUser];
+    [self.navigationController pushViewController:chatView animated:YES];
 }
 
 #pragma mark <UICollectionViewDelegate>

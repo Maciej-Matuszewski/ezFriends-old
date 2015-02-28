@@ -27,6 +27,7 @@
 #import "ezOnlineNavigationController.h"
 #import "ezUserFeedCollectionViewController.h"
 #import "ezUserFeedProfileCollectionViewCell.h"
+#import "ezChatViewController.h"
 
 #import "NavigationControllerDelegate.h"
 

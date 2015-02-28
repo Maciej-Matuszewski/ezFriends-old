@@ -59,6 +59,9 @@
         [self.navconDelegate awakeFromNib];
         self.window.rootViewController = self.navCon;
     }
+    //*/
+    
+    //self.window.rootViewController = [[ezChatViewController alloc] init];
     
     [self.window makeKeyAndVisible];
 
@@ -67,11 +70,7 @@
     _locationManager.distanceFilter = kCLDistanceFilterNone;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
-    
-    //[self initSinchClient:[[PFInstallation currentInstallation] objectId]];
-    
 
-    //[self registerPush];
     
     return YES;
 }

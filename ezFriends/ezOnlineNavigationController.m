@@ -34,7 +34,7 @@
     [aFlowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     [self setViewControllers:@[[[ezUserFeedCollectionViewController alloc]initWithCollectionViewLayout:aFlowLayout]]];
     
-    
+    [self.navigationBar setTintColor:[UIColor whiteColor]];
 }
 
 - (void)didReceiveMemoryWarning {

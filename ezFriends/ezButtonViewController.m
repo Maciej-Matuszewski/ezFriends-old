@@ -127,7 +127,7 @@
     [self.buttonView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[item]|" options:0 metrics:nil views:@{@"item":self.buttonView.imageView}]];
     [self.buttonView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[item]|" options:0 metrics:nil views:@{@"item":self.buttonView.imageView}]];
 
-    [self performSelector:@selector(pushToUserFeed) withObject:nil];
+    //[self performSelector:@selector(pushToUserFeed) withObject:nil];
     
 }
 

@@ -22,6 +22,7 @@
 		14661CBE1A9BF2A300C90853 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14661CBD1A9BF2A300C90853 /* CoreVideo.framework */; };
 		14661CC01A9BF2AC00C90853 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14661CBF1A9BF2AC00C90853 /* AVFoundation.framework */; };
 		14661CC21A9BF2B600C90853 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14661CC11A9BF2B600C90853 /* ImageIO.framework */; };
+		14700E7F1AA1663F00B4EEFF /* ezChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14700E7E1AA1663F00B4EEFF /* ezChatViewController.m */; };
 		1494CFA41A9DF7FF000ABE0D /* ezMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1494CFA31A9DF7FF000ABE0D /* ezMenuViewController.m */; };
 		1494CFA61A9E4A01000ABE0D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1494CFA51A9E4A01000ABE0D /* CoreLocation.framework */; };
 		1494CFA91A9F86B3000ABE0D /* ezLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1494CFA81A9F86B3000ABE0D /* ezLoginViewController.m */; };
@@ -68,6 +69,8 @@
 		14661CBD1A9BF2A300C90853 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		14661CBF1A9BF2AC00C90853 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		14661CC11A9BF2B600C90853 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		14700E7D1AA1663F00B4EEFF /* ezChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ezChatViewController.h; sourceTree = "<group>"; };
+		14700E7E1AA1663F00B4EEFF /* ezChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ezChatViewController.m; sourceTree = "<group>"; };
 		1494CFA21A9DF7FF000ABE0D /* ezMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ezMenuViewController.h; sourceTree = "<group>"; };
 		1494CFA31A9DF7FF000ABE0D /* ezMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ezMenuViewController.m; sourceTree = "<group>"; };
 		1494CFA51A9E4A01000ABE0D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -163,6 +166,8 @@
 				14A0EC4A1AA0865E0040756B /* ezUserFeedCollectionViewController.m */,
 				14A0EC4C1AA08F660040756B /* ezUserFeedProfileCollectionViewCell.h */,
 				14A0EC4D1AA08F660040756B /* ezUserFeedProfileCollectionViewCell.m */,
+				14700E7D1AA1663F00B4EEFF /* ezChatViewController.h */,
+				14700E7E1AA1663F00B4EEFF /* ezChatViewController.m */,
 			);
 			path = ezFriends;
 			sourceTree = "<group>";
@@ -358,6 +363,7 @@
 				1447279D1AA0023B0076FD6A /* ezOnlineNavigationController.m in Sources */,
 				14661CBA1A9BEB3A00C90853 /* ezButtonViewController.m in Sources */,
 				144727871A9FDACF0076FD6A /* ezRegisterSelectMinMaxAgeViewController.m in Sources */,
+				14700E7F1AA1663F00B4EEFF /* ezChatViewController.m in Sources */,
 				14A0EC4B1AA0865E0040756B /* ezUserFeedCollectionViewController.m in Sources */,
 				14661C981A9BE97000C90853 /* AppDelegate.m in Sources */,
 				14661C951A9BE97000C90853 /* main.m in Sources */,
