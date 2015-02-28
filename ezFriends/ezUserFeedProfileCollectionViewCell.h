@@ -11,6 +11,11 @@
 
 @interface ezUserFeedProfileCollectionViewCell : UICollectionViewCell <UIScrollViewDelegate>
 
+@property (nonatomic, retain) UIScrollView * scrollView;
+@property (nonatomic, retain) UILabel *nameLabel;
+@property (nonatomic, retain) UIButton *chatButton;
+@property (nonatomic, retain) UIButton *dismissButton;
+
 @property (nonatomic, retain) NSArray *photosArray;
 
 @property (nonatomic, retain) NSMutableArray *imageViewsArray;
