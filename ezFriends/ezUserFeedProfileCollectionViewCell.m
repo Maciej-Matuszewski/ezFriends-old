@@ -22,11 +22,47 @@
         [scrollView setDelegate:self];
         [self addSubview:scrollView];
         
+        UILabel *nameLabel = [[UILabel alloc] init];
+        [nameLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [nameLabel setFont:[UIFont systemFontOfSize:36]];
+        [nameLabel setTextColor:[(AppDelegate *)[[UIApplication sharedApplication] delegate] ezColor]];
+        [nameLabel setTextAlignment:NSTextAlignmentLeft];
+        [nameLabel setText:[NSString stringWithFormat:@"  %@  ",user[@"name"]]];
+        [nameLabel.layer setCornerRadius:20];
+        [nameLabel setClipsToBounds:YES];
+        [nameLabel setBackgroundColor:[UIColor whiteColor]];
+        [self addSubview:nameLabel];
+        /*
+        UILabel *ageLabel = [[UILabel alloc] init];
+        [ageLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [ageLabel setFont:[UIFont boldSystemFontOfSize:60]];
+        [ageLabel setTextColor:[(AppDelegate *)[[UIApplication sharedApplication] delegate] ezColor]];
+        [ageLabel setTextAlignment:NSTextAlignmentCenter];
+        [ageLabel setText:@"20"];
+        [self addSubview:ageLabel];
+         //*/
+        
+        UIButton *chatButton = [[UIButton alloc] init];
+        [chatButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [chatButton setImage:[UIImage imageNamed:@"chatCircle"] forState:UIControlStateNormal];
+        [self addSubview:chatButton];
+        UIButton *dismissButton = [[UIButton alloc] init];
+        [dismissButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [dismissButton setImage:[UIImage imageNamed:@"dismissCircle"] forState:UIControlStateNormal];
+        [self addSubview:dismissButton];
+        
         [self addConstraint:[NSLayoutConstraint constraintWithItem:scrollView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
+        
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:nameLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:nameLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:scrollView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
         
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView(width)]|" options:0 metrics:@{@"width":[NSNumber numberWithFloat:self.bounds.size.width]} views:@{@"scrollView" : scrollView}]];
         
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[scrollView(width)]" options:NSLayoutFormatAlignAllCenterX metrics:@{@"width":[NSNumber numberWithFloat:self.bounds.size.width]} views:@{@"scrollView" : scrollView}]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[scrollView(width)]-(>=10)-[chatButton]-(==40)-|" options:0 metrics:@{@"width":[NSNumber numberWithFloat:self.bounds.size.width]} views:@{@"scrollView" : scrollView, @"chatButton" : dismissButton}]];
+        
+        //[self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(==20)-[ageLabel]-[nameLabel]" options:NSLayoutFormatAlignAllTop metrics:nil views:@{@"ageLabel" : ageLabel, @"nameLabel" : nameLabel}]];
+        
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(==50)-[dismissButton]-(>=10)-[chatButton]-(==50)-|" options:NSLayoutFormatAlignAllCenterY metrics:nil views:@{@"chatButton" : chatButton, @"dismissButton" : dismissButton}]];
         
         self.imageView = [[ UIImageView alloc] init];
         [self.imageView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -65,6 +101,8 @@
         [self setImagesLoaded:YES];
         PFQuery *query = [PFQuery queryWithClassName:@"Photos"];
         [query whereKey:@"user" equalTo:self.pfUser];
+        [query orderByDescending:@"createdAt"];
+        [query setLimit:20];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (!error) {
                 [scrollView setContentSize:CGSizeMake(self.bounds.size.width*(objects.count+1), self.bounds.size.width)];

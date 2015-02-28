@@ -48,7 +48,7 @@
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"mainBackground"]]];
     
-    
+    [[PFUser currentUser] fetchInBackground];
     
     SWRevealViewController *revealController = [self revealViewController];
     
