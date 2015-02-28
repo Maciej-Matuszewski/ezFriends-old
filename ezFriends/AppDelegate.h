@@ -18,6 +18,7 @@
 #import <TTTAttributedLabel.h>
 #import <NMRangeSlider/NMRangeSlider.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <FPPopover/FPPopoverController.h>
 
 #import "ezLoginViewController.h"
 #import "ezButtonViewController.h"
@@ -28,6 +29,7 @@
 #import "ezUserFeedCollectionViewController.h"
 #import "ezUserFeedProfileCollectionViewCell.h"
 #import "ezChatViewController.h"
+#import "ezStickersCollectionViewController.h"
 
 #import "NavigationControllerDelegate.h"
 

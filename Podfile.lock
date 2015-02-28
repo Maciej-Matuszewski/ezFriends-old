@@ -3,6 +3,7 @@ PODS:
   - DBPrivacyHelper (0.6.2)
   - Facebook-iOS-SDK (3.23.0):
     - Bolts (~> 1.0)
+  - FPPopover (1.4.1)
   - JSQMessagesViewController (6.1.3):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
@@ -26,6 +27,7 @@ PODS:
 DEPENDENCIES:
   - DBPrivacyHelper
   - Facebook-iOS-SDK
+  - FPPopover
   - JSQMessagesViewController
   - NMRangeSlider
   - Parse
@@ -42,6 +44,7 @@ SPEC CHECKSUMS:
   Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
   DBPrivacyHelper: 2dc0c2153d3177a97fa4e7122da672b34c569219
   Facebook-iOS-SDK: 3d65f685348b789e46a9aacf92bfa85b60b63755
+  FPPopover: bbfc452ec8949a2c2f555cf2d8c7236e621811f0
   JSQMessagesViewController: e93a288a9662d4519c95a28a8c0eec10beae1bfc
   JSQSystemSoundPlayer: 55528c699a283aae2220d3ae7b8b527d2ecef4b4
   NMRangeSlider: af83627c6da11b39a6147c223f6674b3c57b5b44

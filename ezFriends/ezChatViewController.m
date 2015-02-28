@@ -18,6 +18,8 @@
 @property (nonatomic, retain) JSQMessagesAvatarImage *incomingAvatar;
 @property (nonatomic, retain) JSQMessagesAvatarImage *outgoingAvatar;
 
+@property (nonatomic, retain) FPPopoverController *popover;
+
 @end
 
 @implementation ezChatViewController
@@ -29,10 +31,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTitle:self.user[@"name"]];
+    NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    [UIColor whiteColor],NSForegroundColorAttributeName,
+                                    [UIColor whiteColor],NSBackgroundColorAttributeName,nil];
+    
+    self.navigationController.navigationBar.titleTextAttributes = textAttributes;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reciveMessage) name:SINCH_MESSAGE_RECIEVED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sendMessage) name:SINCH_MESSAGE_SENT object:nil];
  
-    //[(AppDelegate *)[[UIApplication sharedApplication] delegate] sendTextMessage:@"test" toRecipient:@"RAHamKkloj"];
     
     self.messages = [(AppDelegate *)[[UIApplication sharedApplication] delegate] reciveMessagesForUser:self.user.objectId];
     
@@ -58,6 +65,26 @@
     }];
     
     
+    
+    UICollectionViewFlowLayout *aFlowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [aFlowLayout setItemSize:CGSizeMake(([[UIScreen mainScreen] applicationFrame].size.width - 20)/2, 80)];
+    [aFlowLayout setMinimumInteritemSpacing:0];
+    [aFlowLayout setMinimumLineSpacing:0];
+    [aFlowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+
+    
+    ezStickersCollectionViewController *ezStickersViewController = [[ezStickersCollectionViewController alloc] initWithCollectionViewLayout:aFlowLayout];
+    
+    ezStickersViewController.returnSticker=^void(NSString *string){
+        [(AppDelegate *)[[UIApplication sharedApplication] delegate] sendTextMessage:string toRecipient:self.user.objectId];
+        [self.popover dismissPopoverAnimated:YES];
+    };
+    
+    [self setPopover:[[FPPopoverController alloc] initWithViewController: ezStickersViewController]];
+    [self.popover setDelegate:ezStickersViewController];
+    [self.popover setContentSize:CGSizeMake([[UIScreen mainScreen] applicationFrame].size.width, 290)];
+    [self.popover setBorder:NO];
+    [self.popover setShadowsHidden:YES];
 }
 
 #pragma mark - Database
@@ -153,7 +180,7 @@
 }
 
 -(void)didPressAccessoryButton:(UIButton *)sender{
-    
+    [self.popover presentPopoverFromView:sender];
 }
 
 @end
