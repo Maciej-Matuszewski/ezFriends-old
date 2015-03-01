@@ -18,7 +18,7 @@
         self.pfUser = user;
         self.scrollView = [[ UIScrollView alloc] init];
         [self.scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [self.scrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"userDefault"]]];
+        [self.scrollView setBackgroundColor:[(AppDelegate *)[[UIApplication sharedApplication] delegate] ezColor]];
         [self.scrollView setDelegate:self];
         [self addSubview:self.scrollView];
         
@@ -61,7 +61,7 @@
         [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[imageView(width)]" options:0 metrics:@{@"width":[NSNumber numberWithFloat:self.bounds.size.width]} views:@{@"imageView" : self.imageView}]];
         [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[imageView(width)]" options:0 metrics:@{@"width":[NSNumber numberWithFloat:self.bounds.size.width]} views:@{@"imageView" : self.imageView}]];
         
-        [self.imageView sd_setImageWithURL:[NSURL URLWithString:((PFFile *)user[@"photo"]).url]];
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:((PFFile *)user[@"photo"]).url]placeholderImage:[UIImage imageNamed:@"userDefault"]];
         
         
         PFQuery *query = [PFQuery queryWithClassName:@"Photos"];

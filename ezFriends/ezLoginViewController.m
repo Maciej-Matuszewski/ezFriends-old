@@ -150,9 +150,9 @@
 - (void)loginBtnAction{
     
     PFUser *user = [PFUser user];
-    user.username = @"my name";
-    user.password = @"my pass";
-    user.email = @"email@example.com";
+    user.username = @"my 6name";
+    user.password = @"my 5pass";
+    user.email = @"email2@example.com";
     
     // other fields can be set just like with PFObject
     user[@"phone"] = @"415-392-0202";
