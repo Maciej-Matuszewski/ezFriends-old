@@ -10,7 +10,7 @@
 #import <JSQMessagesViewController/JSQMessages.h>
 #import "AppDelegate.h"
 
-@interface ezChatViewController : JSQMessagesViewController
+@interface ezChatViewController : JSQMessagesViewController<UIActionSheetDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, retain) PFUser *user;
 

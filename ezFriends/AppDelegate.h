@@ -39,6 +39,10 @@
 #define SINCH_MESSAGE_DELIVERED @"SINCH_MESSAGE_DELIVERED"
 #define SINCH_MESSAGE_FAILED @"SINCH_MESSAGE_DELIVERED"
 
+#define STICKER_PREFIX @"[_S_T_I_C_K_E_R*##*p-r-e-f-i-x]"
+#define PHOTO_PREFIX @"[_P_H_O_T_O*##*p-r-e-f-i-x]"
+#define LOCATION_PREFIX @"[_L_O_C_A_T_I_O_N*##*p-r-e-f-i-x]"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate,SWRevealViewControllerDelegate, SINClientDelegate, SINMessageClientDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

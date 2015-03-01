@@ -23,7 +23,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView setPagingEnabled:YES];
     [self.collectionView setBackgroundColor:[(AppDelegate *)[[UIApplication sharedApplication] delegate] ezColor]];
     
-    [self setStickers:@[@"sticker_0"]];
+    [self setStickers:@[@"sticker_0",@"crash"]];
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -79,7 +79,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    self.returnSticker([NSString stringWithFormat:@":s:%@",[self.stickers objectAtIndex:indexPath.row]]);
+    self.returnSticker([NSString stringWithFormat:@"%@%@",STICKER_PREFIX,[self.stickers objectAtIndex:indexPath.row]]);
     
 }
 

@@ -131,7 +131,6 @@
 // Finish sending a message
 - (void)messageSent:(id<SINMessage>)message recipientId:(NSString *)recipientId {
     [[NSNotificationCenter defaultCenter] postNotificationName:SINCH_MESSAGE_SENT object:self userInfo:@{@"message" : message}];
-    NSLog(@"send");
 }
 
 // Failed to send a message

@@ -15,6 +15,8 @@
 
 @property (nonatomic, retain) JSQMessagesBubbleImage *incomingBubble;
 @property (nonatomic, retain) JSQMessagesBubbleImage *outgoingBubble;
+@property (nonatomic, retain) JSQMessagesBubbleImage *incomingBubbleSticker;
+@property (nonatomic, retain) JSQMessagesBubbleImage *outgoingBubbleSticker;
 @property (nonatomic, retain) JSQMessagesAvatarImage *incomingAvatar;
 @property (nonatomic, retain) JSQMessagesAvatarImage *outgoingAvatar;
 
@@ -37,6 +39,15 @@
     
     self.navigationController.navigationBar.titleTextAttributes = textAttributes;
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage jsq_defaultTypingIndicatorImage]
+                                                                              style:UIBarButtonItemStyleBordered
+                                                                             target:self
+                                                                             action:@selector(options)];
+    
+    [self.inputToolbar.contentView.rightBarButtonItem setTitleColor:[(AppDelegate *)[[UIApplication sharedApplication] delegate] ezColor] forState:UIControlStateNormal];
+    [self.inputToolbar.contentView.textView setTintColor:[(AppDelegate *)[[UIApplication sharedApplication] delegate] ezColor]];
+    
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reciveMessage) name:SINCH_MESSAGE_RECIEVED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sendMessage) name:SINCH_MESSAGE_SENT object:nil];
  
@@ -48,6 +59,7 @@
     
     [self setIncomingBubble:[[[[JSQMessagesBubbleImageFactory alloc] init] initWithBubbleImage:[UIImage imageNamed:@"bubble"] capInsets:UIEdgeInsetsMake(0, 0, 0, 0)] incomingMessagesBubbleImageWithColor:[(AppDelegate *)[[UIApplication sharedApplication] delegate] ezColor]]];
     [self setOutgoingBubble:[[[[JSQMessagesBubbleImageFactory alloc] init] initWithBubbleImage:[UIImage imageNamed:@"bubble"] capInsets:UIEdgeInsetsMake(0, 0, 0, 0)] outgoingMessagesBubbleImageWithColor:[UIColor darkGrayColor]]];
+    
     [self setIncomingAvatar:[JSQMessagesAvatarImageFactory avatarImageWithPlaceholder:[UIImage imageNamed:@"userDefault"] diameter:100]];
     [self setOutgoingAvatar:[JSQMessagesAvatarImageFactory avatarImageWithPlaceholder:[UIImage imageNamed:@"userDefault"] diameter:100]];
     
@@ -87,6 +99,13 @@
     [self.popover setShadowsHidden:YES];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    self.collectionView.collectionViewLayout.springinessEnabled = YES;
+}
+
 #pragma mark - Database
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -99,7 +118,7 @@
     
     NSDictionary *message = [self.messages objectAtIndex:indexPath.row];
     JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
-    if (![message[@"text"] containsString:@":s:"]) {
+    if (![message[@"text"] containsString:STICKER_PREFIX] && ![message[@"text"] containsString:PHOTO_PREFIX] && ![message[@"text"] containsString:LOCATION_PREFIX]) {
         
         if ([message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]) {
             [cell.textView setTextColor:[UIColor darkGrayColor]];
@@ -113,6 +132,8 @@
     }
     
     [cell setAlpha:(float)(1440-[[[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] components:NSMinuteCalendarUnit fromDate:message[@"date"] toDate:[NSDate date] options:0] minute])/1440];
+    
+    if ([cell alpha]<0.1) [cell setAlpha:0.1];
     
     return cell;
     
@@ -130,14 +151,36 @@
 - (id<JSQMessageData>)collectionView:(JSQMessagesCollectionView *)collectionView messageDataForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *message = [self.messages objectAtIndex:indexPath.row];
-    if ([message[@"text"] containsString:@":s:"]) {
-        return [[JSQMessage alloc] initWithSenderId:message[@"senderID"] senderDisplayName:[message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]?[PFUser currentUser][@"name"]:self.user[@"name"] date:message[@"date"] media:[[JSQPhotoMediaItem alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_%@",[message[@"text"] stringByReplacingOccurrencesOfString:@":s:" withString:@""],[message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]?@"b":@"a"]]]];
+    if ([message[@"text"] containsString:STICKER_PREFIX]) {
+        
+        JSQPhotoMediaItem *photo = [[JSQPhotoMediaItem alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_%@",[message[@"text"] stringByReplacingOccurrencesOfString:STICKER_PREFIX withString:@""],[message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]?@"b":@"a"]]];
+        photo.appliesMediaViewMaskAsOutgoing = [message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]];
+        
+        return [[JSQMessage alloc] initWithSenderId:message[@"senderID"] senderDisplayName:[message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]?[PFUser currentUser][@"name"]:self.user[@"name"] date:message[@"date"] media:photo];
     }
+    
+    if ([message[@"text"] containsString:PHOTO_PREFIX]) {
+        
+        JSQPhotoMediaItem *photo = [[JSQPhotoMediaItem alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_%@",[message[@"text"] stringByReplacingOccurrencesOfString:STICKER_PREFIX withString:@""],[message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]?@"b":@"a"]]];
+        photo.appliesMediaViewMaskAsOutgoing = [message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]];
+        
+        return [[JSQMessage alloc] initWithSenderId:message[@"senderID"] senderDisplayName:[message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]?[PFUser currentUser][@"name"]:self.user[@"name"] date:message[@"date"] media:photo];
+    }
+    
+    if ([message[@"text"] containsString:LOCATION_PREFIX]) {
+        
+        JSQPhotoMediaItem *photo = [[JSQPhotoMediaItem alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_%@",[message[@"text"] stringByReplacingOccurrencesOfString:STICKER_PREFIX withString:@""],[message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]?@"b":@"a"]]];
+        photo.appliesMediaViewMaskAsOutgoing = [message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]];
+        
+        return [[JSQMessage alloc] initWithSenderId:message[@"senderID"] senderDisplayName:[message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]?[PFUser currentUser][@"name"]:self.user[@"name"] date:message[@"date"] media:photo];
+    }
+    
     return [[JSQMessage alloc] initWithSenderId:message[@"senderID"] senderDisplayName:[message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]?[PFUser currentUser][@"name"]:self.user[@"name"] date:message[@"date"] text:message[@"text"]];
 }
 
 - (id<JSQMessageBubbleImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView messageBubbleImageDataForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     return [[self.messages objectAtIndex:indexPath.row][@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]?self.outgoingBubble:self.incomingBubble;
 }
 
@@ -188,6 +231,44 @@
 -(void)didPressAccessoryButton:(UIButton *)sender{
     [self.view endEditing:YES];
     [self.popover presentPopoverFromView:sender];
+}
+
+-(void)options{
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                         destructiveButtonTitle:@"Block user"
+                                              otherButtonTitles:@"Send photo from Camera",@"Send photo from Galery", @"Send location", nil];
+    
+    [sheet showFromToolbar:self.inputToolbar];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        return;
+    }
+    
+    if (buttonIndex == actionSheet.destructiveButtonIndex) {
+        [[[UIAlertView alloc] initWithTitle:@"Block user" message:@"Do You realy want to block this user?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil] show];
+    }
+    
+    switch (buttonIndex) {
+        case 0:
+            break;
+            
+        case 1:
+            break;
+            
+        case 2:
+            break;
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        [[[UIAlertView alloc] initWithTitle:@"Success" message:@"User has been blocked!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+    }
 }
 
 @end

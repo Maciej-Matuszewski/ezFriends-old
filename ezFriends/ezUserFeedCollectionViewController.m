@@ -32,7 +32,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView registerClass:[ezUserFeedProfileCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     PFQuery *query = [PFUser query];
-    
+    [query whereKey:@"objectId" notEqualTo:[[PFUser currentUser] objectId]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(!error){
             self.users = objects;
