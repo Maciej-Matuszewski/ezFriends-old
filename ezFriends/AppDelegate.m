@@ -266,7 +266,6 @@
 #pragma mark - messages database
 
 -(void)loadMessages{
-    
     NSString *filePath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist",[[PFUser currentUser] objectId]]];
     
     
@@ -279,8 +278,11 @@
 
 -(NSArray *)reciveMessagesForUser:(NSString *)userID{
     NSArray *messages;
-    if ([self.messagesDatabase objectForKey:userID])messages = [self.messagesDatabase objectForKey:userID];
-    else messages  = [[NSArray alloc] init];
+    if ([self.messagesDatabase objectForKey:userID]){
+        messages = [self.messagesDatabase objectForKey:userID];
+        if(messages.count>20)messages = [messages subarrayWithRange:NSMakeRange(messages.count-20, 20)];
+        
+    }else messages  = [[NSArray alloc] init];
     return messages;
 }
 

@@ -13,6 +13,8 @@
 
 @property (nonatomic, retain) NSArray *users;
 
+@property (nonatomic, retain) ezChatViewController *chatViewController;
+
 @end
 
 @implementation ezUserFeedCollectionViewController
@@ -39,6 +41,8 @@ static NSString * const reuseIdentifier = @"Cell";
             [self.collectionView reloadData];
         }
     }];
+    
+    self.chatViewController = [[ezChatViewController alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,9 +83,9 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)chatButtonAction:(UIButton *)sender{
     ezUserFeedProfileCollectionViewCell *cell = (ezUserFeedProfileCollectionViewCell *)[sender superview];
-    ezChatViewController *chatView = [[ezChatViewController alloc] init];
-    [chatView setUser:cell.pfUser];
-    [self.navigationController pushViewController:chatView animated:YES];
+    
+    [self.chatViewController setUser:cell.pfUser];
+    [self.navigationController pushViewController:self.chatViewController animated:YES];
 }
 
 #pragma mark <UICollectionViewDelegate>

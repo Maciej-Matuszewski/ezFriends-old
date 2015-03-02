@@ -9,7 +9,7 @@
 #import "ezChatViewController.h"
 
 
-@interface ezChatViewController ()
+@interface ezChatViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, retain) NSArray *messages;
 
@@ -103,7 +103,18 @@
 {
     [super viewDidAppear:animated];
     
-    self.collectionView.collectionViewLayout.springinessEnabled = YES;
+    //self.collectionView.collectionViewLayout.springinessEnabled = YES;
+    
+    self.messages = [(AppDelegate *)[[UIApplication sharedApplication] delegate] reciveMessagesForUser:self.user.objectId];
+    [self.collectionView reloadData];
+    [self scrollToBottomAnimated:NO];
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+    
+    
 }
 
 #pragma mark - Database
@@ -129,6 +140,8 @@
         cell.textView.linkTextAttributes = @{ NSForegroundColorAttributeName : cell.textView.textColor,
                                               NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid) };
         
+    }else{
+        [cell.mediaView setFrame:CGRectMake(0, 0, 0, 0)];
     }
     
     [cell setAlpha:(float)(1440-[[[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] components:NSMinuteCalendarUnit fromDate:message[@"date"] toDate:[NSDate date] options:0] minute])/1440];
@@ -152,19 +165,26 @@
 {
     NSDictionary *message = [self.messages objectAtIndex:indexPath.row];
     if ([message[@"text"] containsString:STICKER_PREFIX]) {
+        @autoreleasepool {
+            JSQPhotoMediaItem *photo = [[JSQPhotoMediaItem alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_%@",[message[@"text"] stringByReplacingOccurrencesOfString:STICKER_PREFIX withString:@""],[message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]?@"b":@"a"]]];
+            photo.appliesMediaViewMaskAsOutgoing = [message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]];
+            
+            return [[JSQMessage alloc] initWithSenderId:message[@"senderID"] senderDisplayName:[message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]?[PFUser currentUser][@"name"]:self.user[@"name"] date:message[@"date"] media:photo];
+        }
         
-        JSQPhotoMediaItem *photo = [[JSQPhotoMediaItem alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_%@",[message[@"text"] stringByReplacingOccurrencesOfString:STICKER_PREFIX withString:@""],[message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]?@"b":@"a"]]];
-        photo.appliesMediaViewMaskAsOutgoing = [message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]];
-        
-        return [[JSQMessage alloc] initWithSenderId:message[@"senderID"] senderDisplayName:[message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]?[PFUser currentUser][@"name"]:self.user[@"name"] date:message[@"date"] media:photo];
     }
     
     if ([message[@"text"] containsString:PHOTO_PREFIX]) {
+        @autoreleasepool {
+            JSQPhotoMediaItem *photo = [[JSQPhotoMediaItem alloc] initWithImage:[UIImage imageWithData:[[NSData alloc] initWithBase64EncodedString:[[message[@"text"] stringByReplacingOccurrencesOfString:PHOTO_PREFIX withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@"+"] options:NSDataBase64DecodingIgnoreUnknownCharacters]]];
+            
+            photo.appliesMediaViewMaskAsOutgoing = [message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]];
+            
+            return [[JSQMessage alloc] initWithSenderId:message[@"senderID"] senderDisplayName:[message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]?[PFUser currentUser][@"name"]:self.user[@"name"] date:message[@"date"] media:photo];
+        }
         
-        JSQPhotoMediaItem *photo = [[JSQPhotoMediaItem alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_%@",[message[@"text"] stringByReplacingOccurrencesOfString:STICKER_PREFIX withString:@""],[message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]?@"b":@"a"]]];
-        photo.appliesMediaViewMaskAsOutgoing = [message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]];
         
-        return [[JSQMessage alloc] initWithSenderId:message[@"senderID"] senderDisplayName:[message[@"senderID"] isEqualToString:[[PFUser currentUser] objectId]]?[PFUser currentUser][@"name"]:self.user[@"name"] date:message[@"date"] media:photo];
+        
     }
     
     if ([message[@"text"] containsString:LOCATION_PREFIX]) {
@@ -238,13 +258,14 @@
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
                                          destructiveButtonTitle:@"Block user"
-                                              otherButtonTitles:@"Send photo from Camera",@"Send photo from Galery", @"Send location", nil];
+                                              otherButtonTitles:@"Send photo from Camera",@"Send photo from Gallery", @"Send location", @"Check location", nil];
     
     [sheet showFromToolbar:self.inputToolbar];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
+    NSLog(@"%ld",(long)buttonIndex);
     if (buttonIndex == actionSheet.cancelButtonIndex) {
         return;
     }
@@ -254,21 +275,71 @@
     }
     
     switch (buttonIndex) {
-        case 0:
-            break;
+        case 1:{
             
-        case 1:
-            break;
             
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+                picker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+                [picker setDelegate:self];
+                [self presentViewController:picker animated:YES completion:nil];
+                
+            }else{
+                [[[UIAlertView alloc] initWithTitle:@"Error!" message:@"This device is no supported!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+            }
+            
+            break;
+        }
         case 2:
+            
+            
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+                UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+                [picker setDelegate:self];
+                [self presentViewController:picker animated:YES completion:nil];
+                
+            }else{
+                [[[UIAlertView alloc] initWithTitle:@"Error!" message:@"This device is no supported!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+            }
+            
+            break;
+            
+        case 3:
             break;
     }
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
-        [[[UIAlertView alloc] initWithTitle:@"Success" message:@"User has been blocked!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"Success" message:@"This device no support camera!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
     }
 }
+
+- (void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+    
+    @autoreleasepool {
+        NSData *dataImage = UIImageJPEGRepresentation([info valueForKey:UIImagePickerControllerOriginalImage],0.0001f);
+        
+        
+        NSString *stringImage = [dataImage base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+        [(AppDelegate *)[[UIApplication sharedApplication] delegate] sendTextMessage:[NSString stringWithFormat:@"%@%@",PHOTO_PREFIX,stringImage] toRecipient:self.user.objectId];
+        
+        
+    }
+    
+    
+}
+
+- (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapMessageBubbleAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Tapped message bubble!");
+}
+
 
 @end

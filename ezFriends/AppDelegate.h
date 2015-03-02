@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
 #import <SWRevealViewController/SWRevealViewController.h>
 #import <Parse/Parse.h>

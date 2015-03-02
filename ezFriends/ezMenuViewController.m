@@ -95,7 +95,6 @@
 }
 
 - (void)messageButtonAction{
-    [(AppDelegate *)[[UIApplication sharedApplication] delegate]sendTextMessage:@"test" toRecipient:@"bipkJon2zv"];
 }
 
 @end

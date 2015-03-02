@@ -11,7 +11,7 @@
 
 @interface ezLoginViewController ()<TTTAttributedLabelDelegate>
 
-#define termsLink @"http://fotolab.co/regulamin.pdf"
+#define termsLink @"http://files.parsetfss.com/419f1201-a444-42a8-8a8f-4515af0387c1/tfss-a1786b3a-7603-49f9-a5e9-e9a66c789e7e-Terms.pdf"
 #define privacyLink @"http://fotolab.co/politykaprywatnosci.pdf"
 
 @end
@@ -150,9 +150,10 @@
 - (void)loginBtnAction{
     
     PFUser *user = [PFUser user];
-    user.username = @"my 6name";
+    user.username = @"patrycja2";
     user.password = @"my 5pass";
-    user.email = @"email2@example.com";
+    user.email = @"emagfdgdil2@eghjgxample.com";
+    user[@"name"]= @"Patrycja2";
     
     // other fields can be set just like with PFObject
     user[@"phone"] = @"415-392-0202";
