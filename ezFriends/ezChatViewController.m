@@ -32,7 +32,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setTitle:self.user[@"name"]];
     NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                     [UIColor whiteColor],NSForegroundColorAttributeName,
                                     [UIColor whiteColor],NSBackgroundColorAttributeName,nil];
@@ -105,14 +104,19 @@
     
     //self.collectionView.collectionViewLayout.springinessEnabled = YES;
     
+    [self setTitle:self.user[@"name"]];
     self.messages = [(AppDelegate *)[[UIApplication sharedApplication] delegate] reciveMessagesForUser:self.user.objectId];
     [self.collectionView reloadData];
     [self scrollToBottomAnimated:NO];
 }
 
--(void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     
+    [self setTitle:@""];
+    
+    self.messages = nil;
+    [self.collectionView reloadData];
     
     
 }
