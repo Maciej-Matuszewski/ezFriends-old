@@ -22,6 +22,7 @@
 #import <FPPopover/FPPopoverController.h>
 
 #import "ezLoginViewController.h"
+#import "ezLoginWithFieldsViewController.h"
 #import "ezButtonViewController.h"
 #import "ezMenuViewController.h"
 #import "ezRegisterWomenOrMenViewController.h"

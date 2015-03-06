@@ -149,29 +149,7 @@
 
 - (void)loginBtnAction{
     
-    PFUser *user = [PFUser user];
-    user.username = @"patrycja2";
-    user.password = @"my 5pass";
-    user.email = @"emagfdgdil2@eghjgxample.com";
-    user[@"name"]= @"Patrycja2";
-    
-    // other fields can be set just like with PFObject
-    user[@"phone"] = @"415-392-0202";
-    
-    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            AppDelegate * ad = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-            ad.revealVC = [[SWRevealViewController alloc] initWithRearViewController:[[ezMenuViewController alloc] init] frontViewController:[[ezButtonViewController alloc] init]];
-            ad.revealVC.delegate = ad;
-            ad.revealVC.bounceBackOnOverdraw=NO;
-            ad.revealVC.stableDragOnOverdraw=NO;
-            [ad.revealVC setRearViewRevealOverdraw:5];
-            [self.navigationController pushViewController:ad.revealVC animated:YES];
-        } else {
-            NSString *errorString = [error userInfo][@"error"];
-            // Show the errorString somewhere and let the user try again.
-        }
-    }];
+    [self.navigationController pushViewController:[[ezLoginWithFieldsViewController alloc] init] animated:YES];
     
 }
 
