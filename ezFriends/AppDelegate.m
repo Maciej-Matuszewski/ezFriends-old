@@ -155,7 +155,9 @@
 
 -(void)message:(id<SINMessage>)message shouldSendPushNotifications:(NSArray *)pushPairs{
     for(NSString *stringId in [message recipientIds] ){
-        [PFPush sendPushMessageToChannel:[NSString stringWithFormat:@"u_%@",stringId] withMessage:[message text] error:nil];
+        NSDictionary *notification = @{@"alert" : [message text], @"sound": @"default"};
+        [PFPush sendPushDataToChannelInBackground:[NSString stringWithFormat:@"u_%@",stringId] withData:notification];
+        //[PFPush sendPushMessageToChannel:[NSString stringWithFormat:@"u_%@",stringId] withMessage:[message text] error:nil];
     }
 
 }
